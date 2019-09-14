@@ -44,7 +44,7 @@ class Home extends CI_Controller {
 
 
 	
-
+	// add data
 	public function adddata()
 	{
 		//$this->load->database();
