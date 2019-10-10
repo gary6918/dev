@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->database();
+		//$this->load->database();
 	}
 
 	public function index()	{
@@ -16,15 +16,37 @@ class Home extends CI_Controller {
 		$this->load->view('home_aboutus');
 	}
 
-	/*public function test0() {
-		$this->load->view('home_test');
-	}*/
+	
+	public function contact(){
+		$data=array(
+			'result'=> FALSE
+		);
+		$this->load->view('home_contact', $data);
+	}
+
+	public function docontact(){
+		$this->load->model('stack_model');
+		if($this->input->method()=='post') {
+			$ipt=$this->input->post();
+			$result=$this->stack_model->saveContact($ipt);
+			$data=array(
+				'result'=>$result
+			);
+
+			$this->load->view('home_contact',$data);
+		}else{
+			redirect('/home/contact');
+		}
 
 
+
+
+
+	}
 
 	
 
-
+/*
 	public function createtbl() {
 		// $this->load->database();
 		$sql='
@@ -40,10 +62,10 @@ class Home extends CI_Controller {
 	}
 
 
+*/
 
 
-
-	
+/*	
 	// add data
 	public function adddata()
 	{
@@ -57,7 +79,9 @@ class Home extends CI_Controller {
 		echo 'ok';
 	}
 
+*/
 
+/*
 	public function test() {
 		$this->load->model('friends_model');
 		$data=array(
@@ -65,5 +89,20 @@ class Home extends CI_Controller {
 		);
 		$this->load->view('home_test',$data);
 	}
-	
+*/
+
+/*
+    public function formInput(){
+		$this->load->view('home_forminput');
+	}
+
+
+
+    public function formsubmit(){
+		echo '<pre>';
+		print_r($this->input->post());
+		echo '</pre>'
+	}
+*/
+
 }
